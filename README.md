@@ -19,7 +19,7 @@
 
 The final project video presentation is available here:
 
-- [Video Presentation](./Video_Presentation.mov)
+- [Video Presentation](https://youtu.be/EUXNESQju1E?si=bJqRE1BEfDB8Xt_S)
 
 ## 2. Project Summary
 
