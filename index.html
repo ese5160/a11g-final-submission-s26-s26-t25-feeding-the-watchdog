@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Feeding the Watchdog | A11G Final Submission</title>
+    <meta
+      name="description"
+      content="A11G final submission website for Team T25, Feeding the Watchdog."
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f6f7f9;
+        --panel: #ffffff;
+        --ink: #1f2933;
+        --muted: #5f6b7a;
+        --line: #d8dee8;
+        --accent: #176f73;
+        --accent-dark: #0f4f52;
+        --soft: #e7f3f2;
+        --code: #eef2f6;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        line-height: 1.6;
+      }
+
+      header {
+        background: linear-gradient(135deg, #f7fbfb 0%, #dceceb 100%);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .hero,
+      main {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .hero {
+        padding: 48px 0 34px;
+      }
+
+      .eyebrow {
+        margin: 0 0 10px;
+        color: var(--accent-dark);
+        font-size: 0.86rem;
+        font-weight: 700;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .hero h1 {
+        margin: 0;
+        max-width: 900px;
+        color: #18222d;
+        font-size: clamp(2.15rem, 5vw, 4.5rem);
+        line-height: 1;
+      }
+
+      .hero p {
+        max-width: 760px;
+        margin: 18px 0 0;
+        color: var(--muted);
+        font-size: 1.08rem;
+      }
+
+      .quick-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 24px;
+      }
+
+      .quick-links a {
+        border: 1px solid rgba(23, 111, 115, 0.24);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.72);
+        color: var(--accent-dark);
+        padding: 8px 12px;
+        font-weight: 650;
+        text-decoration: none;
+      }
+
+      main {
+        padding: 30px 0 54px;
+      }
+
+      #content {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        box-shadow: 0 18px 50px rgba(31, 41, 51, 0.08);
+      }
+
+      .markdown-body {
+        padding: 34px;
+      }
+
+      .markdown-body > p:first-child {
+        display: none;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #1c2733;
+        line-height: 1.22;
+      }
+
+      h1 {
+        margin: 0 0 18px;
+        font-size: 2.1rem;
+      }
+
+      h2 {
+        margin: 38px 0 16px;
+        border-top: 1px solid var(--line);
+        padding-top: 28px;
+        font-size: 1.6rem;
+      }
+
+      h3,
+      h4 {
+        margin: 26px 0 10px;
+        font-size: 1.12rem;
+      }
+
+      p,
+      li {
+        color: #2f3a46;
+      }
+
+      a {
+        color: var(--accent);
+      }
+
+      a:hover {
+        color: var(--accent-dark);
+      }
+
+      ul {
+        padding-left: 1.35rem;
+      }
+
+      table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        border-collapse: collapse;
+        margin: 18px 0 28px;
+      }
+
+      th,
+      td {
+        border: 1px solid var(--line);
+        padding: 10px 12px;
+        vertical-align: top;
+      }
+
+      th {
+        background: var(--soft);
+        color: #163f42;
+        font-weight: 750;
+      }
+
+      tr:nth-child(even) td {
+        background: #fbfcfd;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+      }
+
+      pre {
+        overflow-x: auto;
+        border-radius: 8px;
+        background: var(--code);
+        padding: 16px;
+      }
+
+      code {
+        border-radius: 5px;
+        background: var(--code);
+        padding: 0.1em 0.3em;
+      }
+
+      pre code {
+        background: transparent;
+        padding: 0;
+      }
+
+      .mermaid {
+        display: flex;
+        justify-content: center;
+        overflow-x: auto;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        padding: 20px;
+      }
+
+      .loading,
+      .error {
+        padding: 34px;
+        color: var(--muted);
+      }
+
+      footer {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 0 0 34px;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      @media (max-width: 720px) {
+        .hero,
+        main,
+        footer {
+          width: min(100% - 20px, 1120px);
+        }
+
+        .hero {
+          padding: 34px 0 24px;
+        }
+
+        .markdown-body {
+          padding: 22px 16px;
+        }
+
+        h1 {
+          font-size: 1.7rem;
+        }
+
+        h2 {
+          font-size: 1.35rem;
+        }
+
+        th,
+        td {
+          padding: 8px 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <section class="hero" aria-label="Project summary">
+        <p class="eyebrow">A11G Final Submission | Team T25</p>
+        <h1>Feeding the Watchdog</h1>
+        <p>
+          An Internet-connected smart food locker with secure deposit and pickup,
+          local access control, environmental sensing, and MQTT cloud monitoring.
+        </p>
+        <nav class="quick-links" aria-label="Page sections">
+          <a href="#1-video-presentation">Video</a>
+          <a href="#2-project-summary">Summary</a>
+          <a href="#3-hardware--software-requirements">Requirements</a>
+          <a href="#4-project-photos--screenshots">Photos</a>
+          <a href="#5-codebase">Codebase</a>
+        </nav>
+      </section>
+    </header>
+
+    <main>
+      <article id="content" class="markdown-body">
+        <div class="loading">Loading README...</div>
+      </article>
+    </main>
+
+    <footer>
+      Team T25 | ESE5160 | Feeding the Watchdog
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+    <script>
+      const content = document.getElementById("content");
+
+      function slugify(text) {
+        return text
+          .toLowerCase()
+          .trim()
+          .replace(/[^\w\s-]/g, "")
+          .replace(/\s+/g, "-");
+      }
+
+      function renderMermaid() {
+        document.querySelectorAll("pre code.language-mermaid").forEach((code) => {
+          const wrapper = document.createElement("div");
+          wrapper.className = "mermaid";
+          wrapper.textContent = code.textContent;
+          code.closest("pre").replaceWith(wrapper);
+        });
+        mermaid.initialize({ startOnLoad: false, theme: "neutral" });
+        mermaid.run({ querySelector: ".mermaid" });
+      }
+
+      fetch("README.md")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("README.md could not be loaded.");
+          }
+          return response.text();
+        })
+        .then((markdown) => {
+          content.innerHTML = marked.parse(markdown, {
+            mangle: false,
+            headerIds: false
+          });
+
+          content.querySelectorAll("h1, h2, h3, h4").forEach((heading) => {
+            if (!heading.id) {
+              heading.id = slugify(heading.textContent);
+            }
+          });
+
+          content.querySelectorAll("a[href]").forEach((link) => {
+            const href = link.getAttribute("href");
+            if (/^https?:\/\//.test(href)) {
+              link.setAttribute("target", "_blank");
+              link.setAttribute("rel", "noopener noreferrer");
+            }
+          });
+
+          renderMermaid();
+        })
+        .catch((error) => {
+          content.innerHTML = `<div class="error">${error.message}</div>`;
+        });
+    </script>
+  </body>
+</html>
